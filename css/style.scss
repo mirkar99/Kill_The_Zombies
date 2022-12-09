@@ -1,0 +1,69 @@
+$yellow-green-crayola: #d0db97ff;
+$medium-sea-green: #69b578ff;
+$fern-green: #3a7d44ff;
+$british-racing-green: #254d32ff;
+$raisin-black: #181d27ff;
+
+$zombie-image-height: 1067px;
+$zombie-image-width: 800px;
+* {
+    margin: 0;
+    padding: 0;
+}
+body{
+    overflow-y: hidden;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    background-color: $raisin-black;
+    &__title {
+        color: $british-racing-green;
+    }
+}
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    background-color: $fern-green;
+}
+.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    &__button {
+        height: 100px;
+        width: 300px;
+        font-size: 1.2em;
+        background-color: $raisin-black;
+        color: $fern-green;
+    }
+    &__button:hover {
+        cursor: pointer;
+    }
+}
+.game {
+    height: 100%;
+    width: 100%;
+}
+.zombie{
+    position: absolute;
+    height: calc($zombie-image-height/4);
+    width: calc($zombie-image-width/4);
+    top:30px;
+    transition:0.1s top;
+    background-size: cover;
+    background-image: url(../img/zombie.png);
+}
+.hidden {
+    position: absolute;
+    overflow: hidden;
+    visibility: hidden;
+    transform: scale(0);
+}
