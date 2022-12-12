@@ -52,11 +52,19 @@ body{
     height: 100%;
     width: 100%;
 }
+.userStats{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &__element{
+        font-size: 1.5em;
+        color:$yellow-green-crayola ;
+    }
+}
 .zombie{
     position: absolute;
-    height: calc($zombie-image-height/4);
-    width: calc($zombie-image-width/4);
-    top:30px;
+    height: calc($zombie-image-height/6);
+    width: calc($zombie-image-width/6);
     transition:0.1s top;
     background-size: cover;
     background-image: url(../img/zombie.png);
