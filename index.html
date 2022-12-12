@@ -14,11 +14,16 @@
         <h1 class="header__title">Kill_The_Zombies</h1>
     </header>
     <main class="main">
-        <section class="menu">
+        <section class="menu hidden">
             <button class="menu__button menu__button--start">Start The Game</button>
             <button class="menu__button menu__button--load">Load Save</button>
         </section>
-        <section class="game hidden">
+        <section class="game">
+            <div class="userStats">
+                <div class="userStats__element userStats__element--health">100hp</div>
+                <div class="userStats__element userStats__element--points">0</div>
+                <div class="userStats__element userStats__element--ammo">7</div>
+            </div>
         </section>
     </main>
     <script src="js/script.js"></script>
