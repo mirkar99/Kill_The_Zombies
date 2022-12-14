@@ -12,6 +12,7 @@ $zombie-image-width: 800px;
 }
 body{
     overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 .header {
@@ -37,9 +38,10 @@ body{
     justify-content: center;
     align-items: center;
     gap: 5px;
+    transition: 0.2s ease-in-out;
     &__button {
         height: 100px;
-        width: 300px;
+        width: 260px;
         font-size: 1.2em;
         background-color: $raisin-black;
         color: $fern-green;
@@ -49,16 +51,32 @@ body{
     }
 }
 .game {
+    cursor: crosshair;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
     height: 100%;
     width: 100%;
+    transition: 0.2s ease-in;
 }
 .userStats{
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 20px;
     &__element{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 80px;
+        height: 55px;
         font-size: 1.5em;
         color:$yellow-green-crayola ;
+        background-color: $raisin-black;
+        z-index: 1;
+        &--ammo:hover{
+            cursor: pointer;
+        }
     }
 }
 .zombie{
