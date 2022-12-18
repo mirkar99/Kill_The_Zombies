@@ -10,7 +10,10 @@ $zombie-image-width: 800px;
     margin: 0;
     padding: 0;
 }
-body{
+html, body{
+    position: relative;
+    height: 100vh;
+    width: 100vw;
     overflow-y: hidden;
     overflow-x: hidden;
 }
@@ -19,7 +22,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10vh;
+    height: 10%;
     background-color: $raisin-black;
     &__title {
         color: $british-racing-green;
@@ -29,7 +32,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    height: 90%;
     background-color: $fern-green;
 }
 .menu {
@@ -73,7 +76,7 @@ body{
         font-size: 1.5em;
         color:$yellow-green-crayola ;
         background-color: $raisin-black;
-        z-index: 1;
+        z-index: 100;
         &--ammo:hover{
             cursor: pointer;
         }
