@@ -18,33 +18,53 @@ const randomElementPositionX = (el) => {
     el.style.left = `${randomNumber}px`;
 }
 const changeElementPositionY = (el) => {
-    if (el.offsetTop < window.visualViewport.height - 67 - el.offsetHeight / 2) {
-        el.style.top = `${el.offsetTop + 15}px`;
-    }else{
-        zombieAttack();
+    el.style.top = `${el.offsetTop + 15}px`;
+}
+const checkElementPositionY = (el) =>{
+    if(el.offsetTop < window.visualViewport.height - 67 - el.offsetHeight / 2){
+        return true;
+    } else{
+        return false;
     }
+}
+const scaleElement = (el, scale) => {
+    el.style.transform = `scale(${scale})`;
 }
 const zombieAttack = function () {
     userHealth.innerText = Number(userHealth.innerText) - 5;
 }
 const zombieNewTop = el => el.style.top = `${header.offsetHeight}px`;
+
+const functionalityForNewZombie = (el)=>{
+    randomElementPositionX(el);
+    let scaleValue = 1.0;
+    let IntervalId = setInterval(() => {
+        scaleValue += 0.2;
+        if (checkElementPositionY(el)) {
+            changeElementPositionY(el);
+        } else {
+            zombieAttack();
+        }
+        scaleElement(el, scaleValue);
+        el.style.zIndex++
+    }, 250);
+    zombiesInterval.push(IntervalId);
+    zombieNewTop(el);
+    el.addEventListener('click', function () {
+        if (Number(userAmmo.innerText) > 0) {
+            userPoints.innerText = Number(userPoints.innerText) + 50;
+            clearInterval(IntervalId);
+            el.remove();
+        }
+    });
+}
+
+
 const createNewZombie = () => {
     const newZombie = document.createElement('div');
     newZombie.classList.add('zombie');
     game.appendChild(newZombie);
-    randomElementPositionX(newZombie);
-    let IntervalId = setInterval(() => {
-        changeElementPositionY(newZombie);
-    }, 250);
-    zombiesInterval.push(IntervalId);
-    zombieNewTop(newZombie)
-    newZombie.addEventListener('click', function () {
-        if (Number(userAmmo.innerText) > 0) {
-            userPoints.innerText = Number(userPoints.innerText) + 50;
-            clearInterval(IntervalId);
-            newZombie.remove();
-        }
-    });
+    functionalityForNewZombie(newZombie);
 }
 
 window.addEventListener("resize", () => {
@@ -87,8 +107,8 @@ const playerHealthChacker = function (mutation) {
             zombiesInterval.forEach(el => clearInterval(el));
             zombiesInterval.splice(0, zombiesInterval.length);
             menu.classList.remove('hidden');
-            userAmmo.innerText=14;
-            userHealth.innerText=100;
+            userAmmo.innerText = 14;
+            userHealth.innerText = 100;
         }
     });
 }
