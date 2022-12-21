@@ -3,7 +3,8 @@
   padding: 0;
 }
 
-html, body {
+html,
+body {
   position: relative;
   height: 100vh;
   width: 100vw;
@@ -15,7 +16,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 10vh;
+  height: 10%;
   background-color: #181d27;
 }
 .header__title {
@@ -26,7 +27,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  height: 90%;
   background-color: #3a7d44;
 }
 
@@ -59,12 +60,12 @@ html, body {
   transition: 0.2s ease-in;
 }
 
-.userStats {
+.user-stats {
   display: flex;
   align-items: center;
   gap: 20px;
 }
-.userStats__element {
+.user-stats__element {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -76,7 +77,7 @@ html, body {
   background-color: #181d27;
   z-index: 100;
 }
-.userStats__element--ammo:hover {
+.user-stats__element--ammo:hover {
   cursor: pointer;
 }
 

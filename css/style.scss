@@ -10,7 +10,8 @@ $zombie-image-width: 800px;
     margin: 0;
     padding: 0;
 }
-html, body{
+html,
+body {
     position: relative;
     height: 100vh;
     width: 100vw;
@@ -62,11 +63,11 @@ html, body{
     width: 100%;
     transition: 0.2s ease-in;
 }
-.userStats{
+.user-stats {
     display: flex;
     align-items: center;
     gap: 20px;
-    &__element{
+    &__element {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -74,19 +75,19 @@ html, body{
         width: 80px;
         height: 55px;
         font-size: 1.5em;
-        color:$yellow-green-crayola ;
+        color: $yellow-green-crayola;
         background-color: $raisin-black;
         z-index: 100;
-        &--ammo:hover{
+        &--ammo:hover {
             cursor: pointer;
         }
     }
 }
-.zombie{
+.zombie {
     position: absolute;
     height: calc($zombie-image-height/6);
     width: calc($zombie-image-width/6);
-    transition:0.1s top;
+    transition: 0.1s top;
     background-size: cover;
     background-image: url(../img/zombie.png);
 }
