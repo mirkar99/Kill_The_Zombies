@@ -39,6 +39,9 @@ body {
   gap: 5px;
   transition: 0.2s ease-in-out;
 }
+.menu__text {
+  color: #d0db97;
+}
 .menu__button {
   height: 100px;
   width: 260px;
