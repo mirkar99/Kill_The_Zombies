@@ -1,6 +1,7 @@
 const header = document.querySelector('header');
 const menu = document.querySelector('.menu');
 const game = document.querySelector('.game');
+const afterGameMenu = document.querySelector('.menu--after-game');
 
 const startButton = menu.children[0];
 const loadtButton = menu.children[1];
@@ -8,6 +9,10 @@ const loadtButton = menu.children[1];
 const userPoints = document.querySelector('.user-stats__element--points');
 const userHealth = document.querySelector('.user-stats__element--health');
 const userAmmo = document.querySelector('.user-stats__element--ammo');
+
+const afterGameMenuText = afterGameMenu.children[0];
+const restartButton = afterGameMenu.children[3];
+
 const zombiesInterval = [];
 let gameInterval;
 
@@ -20,10 +25,10 @@ const randomElementPositionX = (el) => {
 const changeElementPositionY = (el) => {
     el.style.top = `${el.offsetTop + 15}px`;
 }
-const checkElementPositionY = (el) =>{
-    if(el.offsetTop < window.visualViewport.height - 67 - el.offsetHeight / 2){
+const checkElementPositionY = (el) => {
+    if (el.offsetTop < window.visualViewport.height - 67 - el.offsetHeight / 2) {
         return true;
-    } else{
+    } else {
         return false;
     }
 }
@@ -35,7 +40,19 @@ const zombieAttack = function () {
 }
 const zombieNewTop = el => el.style.top = `${header.offsetHeight}px`;
 
-const functionalityForNewZombie = (el)=>{
+const createNewGame = () => {
+    userPoints.innerText = '0';
+    userAmmo.innerText = 14;
+    userHealth.innerText = 100;
+    menu.classList.add('hidden')
+    game.classList.remove('hidden')
+    afterGameMenu.classList.add('hidden')
+    gameInterval = setInterval(() => {
+        createNewZombie();
+    }, 1000)
+}
+
+const functionalityForNewZombie = (el) => {
     randomElementPositionX(el);
     let scaleValue = 1.0;
     let IntervalId = setInterval(() => {
@@ -75,11 +92,7 @@ window.addEventListener("resize", () => {
 });
 
 startButton.addEventListener('click', () => {
-    menu.classList.add('hidden')
-    game.classList.remove('hidden')
-    gameInterval = setInterval(() => {
-        createNewZombie();
-    }, 1000)
+    createNewGame();
 })
 
 game.addEventListener('click', () => {
@@ -99,16 +112,15 @@ userAmmo.addEventListener('click', () => {
 
 const playerHealthChacker = function (mutation) {
     mutation.forEach(function (mutation) {
-        if (Number(userHealth.innerText) === 0) {
+        if (Number(userHealth.innerHTML) === 0) {
             clearInterval(gameInterval);
             game.classList.add('hidden');
             const zombies = document.querySelectorAll('.zombie');
             zombies.forEach(el => el.remove())
             zombiesInterval.forEach(el => clearInterval(el));
             zombiesInterval.splice(0, zombiesInterval.length);
-            menu.classList.remove('hidden');
-            userAmmo.innerText = 14;
-            userHealth.innerText = 100;
+            afterGameMenuText.innerText = `You got ${userPoints.innerText} points`;
+            afterGameMenu.classList.remove('hidden');
         }
     });
 }
@@ -117,3 +129,7 @@ const config = {
 };
 const observeHealth = new MutationObserver(playerHealthChacker);
 observeHealth.observe(userHealth, config);
+
+restartButton.addEventListener('click', () => {
+    createNewGame();
+})
