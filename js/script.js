@@ -11,6 +11,7 @@ const userHealth = document.querySelector('.user-stats__element--health');
 const userAmmo = document.querySelector('.user-stats__element--ammo');
 
 const afterGameMenuText = afterGameMenu.children[0];
+const saveButton = afterGameMenu.children[2];
 const restartButton = afterGameMenu.children[3];
 
 const zombiesInterval = [];
@@ -130,6 +131,27 @@ const config = {
 const observeHealth = new MutationObserver(playerHealthChacker);
 observeHealth.observe(userHealth, config);
 
+const saveState = function(){
+    const save={
+        'PointsAmount':userPoints.innerHTML
+    }
+    localStorage.setItem('Kill_The_Zombies_Save',JSON.stringify(save));
+}
+const loadState = function(){
+    if(localStorage.getItem('Kill_The_Zombies_Save')){
+        const loadedSave = JSON.parse(localStorage.getItem('Kill_The_Zombies_Save'));
+        menu.classList.add('hidden');
+        afterGameMenu.classList.remove('hidden');
+        userPoints.innerText=loadedSave.PointsAmount;
+        afterGameMenuText.innerText = `You got ${loadedSave.PointsAmount} points`;
+    }
+}
+loadtButton.addEventListener('click', () => {
+    loadState();
+})
+saveButton.addEventListener('click', () => {
+    saveState();
+})
 restartButton.addEventListener('click', () => {
     createNewGame();
 })
