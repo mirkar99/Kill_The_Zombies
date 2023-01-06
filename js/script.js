@@ -2,6 +2,7 @@ const header = document.querySelector('header');
 const menu = document.querySelector('.menu');
 const game = document.querySelector('.game');
 const afterGameMenu = document.querySelector('.menu--after-game');
+const shop = document.querySelector('.shop');
 
 const startButton = menu.children[0];
 const loadtButton = menu.children[1];
@@ -11,8 +12,11 @@ const userHealth = document.querySelector('.user-stats__element--health');
 const userAmmo = document.querySelector('.user-stats__element--ammo');
 
 const afterGameMenuText = afterGameMenu.children[0];
+const shopButton = afterGameMenu.children[1];
 const saveButton = afterGameMenu.children[2];
 const restartButton = afterGameMenu.children[3];
+
+const shopBackButton = shop.children[0];
 
 const zombiesInterval = [];
 let gameInterval;
@@ -131,23 +135,31 @@ const config = {
 const observeHealth = new MutationObserver(playerHealthChacker);
 observeHealth.observe(userHealth, config);
 
-const saveState = function(){
-    const save={
-        'PointsAmount':userPoints.innerHTML
+const saveState = function () {
+    const save = {
+        'PointsAmount': userPoints.innerHTML
     }
-    localStorage.setItem('Kill_The_Zombies_Save',JSON.stringify(save));
+    localStorage.setItem('Kill_The_Zombies_Save', JSON.stringify(save));
 }
-const loadState = function(){
-    if(localStorage.getItem('Kill_The_Zombies_Save')){
+const loadState = function () {
+    if (localStorage.getItem('Kill_The_Zombies_Save')) {
         const loadedSave = JSON.parse(localStorage.getItem('Kill_The_Zombies_Save'));
         menu.classList.add('hidden');
         afterGameMenu.classList.remove('hidden');
-        userPoints.innerText=loadedSave.PointsAmount;
+        userPoints.innerText = loadedSave.PointsAmount;
         afterGameMenuText.innerText = `You got ${loadedSave.PointsAmount} points`;
     }
 }
 loadtButton.addEventListener('click', () => {
     loadState();
+})
+shopButton.addEventListener('click', () => {
+    afterGameMenu.classList.add('hidden');
+    shop.classList.remove('hidden');
+})
+shopBackButton.addEventListener('click', () => {
+    shop.classList.add('hidden');
+    afterGameMenu.classList.remove('hidden');
 })
 saveButton.addEventListener('click', () => {
     saveState();
