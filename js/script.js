@@ -20,6 +20,7 @@ const shopBackButton = shop.children[0];
 
 const zombiesInterval = [];
 let gameInterval;
+let killedZombies = 0;
 
 const randomElementPositionX = (el) => {
     const viewportWidth = window.visualViewport.width;
@@ -76,12 +77,23 @@ const functionalityForNewZombie = (el) => {
         if (Number(userAmmo.innerText) > 0) {
             userPoints.innerText = Number(userPoints.innerText) + 50;
             clearInterval(IntervalId);
+            killedZombies++;
             el.remove();
         }
     });
 }
 
-
+const endGame = (text) => {
+    clearInterval(gameInterval);
+    game.classList.add('hidden');
+    const zombies = document.querySelectorAll('.zombie');
+    zombies.forEach(el => el.remove())
+    zombiesInterval.forEach(el => clearInterval(el));
+    zombiesInterval.splice(0, zombiesInterval.length);
+    killedZombies = 0;
+    afterGameMenuText.innerText = text;
+    afterGameMenu.classList.remove('hidden');
+}
 const createNewZombie = () => {
     const newZombie = document.createElement('div');
     newZombie.classList.add('zombie');
@@ -106,6 +118,9 @@ game.addEventListener('click', () => {
         if (Number(userAmmo.innerText) === 0) {
             userAmmo.innerText = 'Click Realod';
         }
+        if (killedZombies === 15) {
+            endGame(`You got ${userPoints.innerText} points`);
+        }
     }
 });
 
@@ -118,14 +133,7 @@ userAmmo.addEventListener('click', () => {
 const playerHealthChacker = function (mutation) {
     mutation.forEach(function (mutation) {
         if (Number(userHealth.innerHTML) === 0) {
-            clearInterval(gameInterval);
-            game.classList.add('hidden');
-            const zombies = document.querySelectorAll('.zombie');
-            zombies.forEach(el => el.remove())
-            zombiesInterval.forEach(el => clearInterval(el));
-            zombiesInterval.splice(0, zombiesInterval.length);
-            afterGameMenuText.innerText = `You got ${userPoints.innerText} points`;
-            afterGameMenu.classList.remove('hidden');
+            endGame(`You got ${userPoints.innerText} points`);
         }
     });
 }
