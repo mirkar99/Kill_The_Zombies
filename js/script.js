@@ -16,7 +16,7 @@ const shopButton = afterGameMenu.children[1];
 const saveButton = afterGameMenu.children[2];
 const restartButton = afterGameMenu.children[3];
 
-const shopBackButton = shop.children[0];
+const shopBackButton = shop.children[1];
 
 const zombiesInterval = [];
 let gameInterval;
@@ -119,7 +119,7 @@ game.addEventListener('click', () => {
             userAmmo.innerText = 'Click Realod';
         }
         if (killedZombies === 15) {
-            endGame(`You got ${userPoints.innerText} points`);
+            endGame(`You Won and get ${userPoints.innerText} points`);
         }
     }
 });
@@ -133,7 +133,7 @@ userAmmo.addEventListener('click', () => {
 const playerHealthChacker = function (mutation) {
     mutation.forEach(function (mutation) {
         if (Number(userHealth.innerHTML) === 0) {
-            endGame(`You got ${userPoints.innerText} points`);
+            endGame(`You Lose`);
         }
     });
 }
@@ -145,7 +145,8 @@ observeHealth.observe(userHealth, config);
 
 const saveState = function () {
     const save = {
-        'PointsAmount': userPoints.innerHTML
+        'PointsAmount': userPoints.innerHTML,
+        'afterGameMenuText': afterGameMenuText.innerText
     }
     localStorage.setItem('Kill_The_Zombies_Save', JSON.stringify(save));
 }
@@ -155,7 +156,7 @@ const loadState = function () {
         menu.classList.add('hidden');
         afterGameMenu.classList.remove('hidden');
         userPoints.innerText = loadedSave.PointsAmount;
-        afterGameMenuText.innerText = `You got ${loadedSave.PointsAmount} points`;
+        afterGameMenuText.innerText = loadedSave.afterGameMenuText;
     }
 }
 loadtButton.addEventListener('click', () => {
