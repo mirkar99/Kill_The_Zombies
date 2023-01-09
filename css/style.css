@@ -41,6 +41,7 @@ body {
 }
 .menu__text {
   color: #d0db97;
+  text-align: center;
 }
 .menu__button {
   height: 100px;
@@ -81,6 +82,38 @@ body {
   z-index: 100;
 }
 .user-stats__element--ammo:hover {
+  cursor: pointer;
+}
+
+.shop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  transition: 0.2s ease-in-out;
+}
+.shop__button {
+  color: #d0db97;
+  background-color: #181d27;
+  width: 100px;
+  height: 50px;
+}
+.shop__button:hover {
+  cursor: pointer;
+}
+.shop__element {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  height: 100px;
+  width: 250px;
+  color: #d0db97;
+  background-color: #181d27;
+  font-size: 1.1em;
+}
+.shop__element:hover {
   cursor: pointer;
 }
 
