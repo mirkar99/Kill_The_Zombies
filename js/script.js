@@ -32,7 +32,7 @@ const changeElementPositionY = (el) => {
     el.style.top = `${el.offsetTop + 15}px`;
 }
 const checkElementPositionY = (el) => {
-    if (el.offsetTop < window.visualViewport.height - 67 - el.offsetHeight / 2) {
+    if (el.offsetTop < window.visualViewport.height - 67 - el.offsetHeight / 3) {
         return true;
     } else {
         return false;
@@ -44,7 +44,7 @@ const scaleElement = (el, scale) => {
 const zombieAttack = function () {
     userHealth.innerText = Number(userHealth.innerText) - 5;
 }
-const zombieNewTop = el => el.style.top = `${header.offsetHeight}px`;
+const zombieNewTop = el => el.style.top = `${window.visualViewport.height*3/5}px`;
 
 const createNewGame = () => {
     userPoints.innerText = '0';
@@ -62,7 +62,7 @@ const functionalityForNewZombie = (el) => {
     randomElementPositionX(el);
     let scaleValue = 1.0;
     let IntervalId = setInterval(() => {
-        scaleValue += 0.2;
+        scaleValue += 0.5;
         if (checkElementPositionY(el)) {
             changeElementPositionY(el);
         } else {
