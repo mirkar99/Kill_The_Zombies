@@ -61,6 +61,9 @@ body {
   align-items: flex-end;
   height: 100%;
   width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-image: url(../img/Cemetery.png);
   transition: 0.2s ease-in;
 }
 
