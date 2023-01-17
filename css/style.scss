@@ -76,6 +76,7 @@ body {
     gap: 20px;
     &__element {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         text-align: center;

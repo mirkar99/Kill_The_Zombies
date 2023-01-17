@@ -7,8 +7,8 @@ const shop = document.querySelector('.shop');
 const startButton = menu.children[0];
 const loadtButton = menu.children[1];
 
-const userPoints = document.querySelector('.user-stats__element--points');
-const userHealth = document.querySelector('.user-stats__element--health');
+const userPoints = document.querySelector('.user-stats__element--points').children[1];
+const userHealth = document.querySelector('.user-stats__element--health').children[1];
 const userAmmo = document.querySelector('.user-stats__element--ammo');
 
 const afterGameMenuText = afterGameMenu.children[0];
