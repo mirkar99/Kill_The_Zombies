@@ -67,7 +67,6 @@ body {
     width: 100%;
     background-size: cover;
     background-position: center;
-    background-image: url(../img/Cemetery.png);
     transition: 0.2s ease-in;
 }
 .user-stats {
@@ -97,6 +96,9 @@ body {
     align-items: center;
     gap: 5px;
     transition: 0.2s ease-in-out;
+    &__text{
+        color: $yellow-green-crayola;
+    }
     &__button{
         color: $yellow-green-crayola;
         background-color: $raisin-black;

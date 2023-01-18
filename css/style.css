@@ -63,7 +63,6 @@ body {
   width: 100%;
   background-size: cover;
   background-position: center;
-  background-image: url(../img/Cemetery.png);
   transition: 0.2s ease-in;
 }
 
@@ -95,6 +94,9 @@ body {
   align-items: center;
   gap: 5px;
   transition: 0.2s ease-in-out;
+}
+.shop__text {
+  color: #d0db97;
 }
 .shop__button {
   color: #d0db97;
