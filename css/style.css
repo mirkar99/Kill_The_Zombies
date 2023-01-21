@@ -88,41 +88,6 @@ body {
   cursor: pointer;
 }
 
-.shop {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  transition: 0.2s ease-in-out;
-}
-.shop__text {
-  color: #d0db97;
-}
-.shop__button {
-  color: #d0db97;
-  background-color: #181d27;
-  width: 100px;
-  height: 50px;
-}
-.shop__button:hover {
-  cursor: pointer;
-}
-.shop__element {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  height: 100px;
-  width: 250px;
-  color: #d0db97;
-  background-color: #181d27;
-  font-size: 1.1em;
-}
-.shop__element:hover {
-  cursor: pointer;
-}
-
 .zombie {
   position: absolute;
   height: 177.8333333333px;

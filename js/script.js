@@ -12,11 +12,9 @@ const userHealth = document.querySelector('.user-stats__element--health').childr
 const userAmmo = document.querySelector('.user-stats__element--ammo');
 
 const afterGameMenuText = afterGameMenu.children[0];
-const shopButton = afterGameMenu.children[1];
-const saveButton = afterGameMenu.children[2];
-const restartButton = afterGameMenu.children[3];
+const saveButton = afterGameMenu.children[1];
+const restartButton = afterGameMenu.children[2];
 
-const shopBackButton = shop.children[1];
 
 const zombiesInterval = [];
 let gameInterval;
@@ -168,7 +166,7 @@ game.addEventListener('click', () => {
         }
         if (killedZombies === levels[actualLevel].zombiesToKill) {
             if (levels[actualLevel].levelWasWon == true) {
-                return endGame(`You did Won again`, true);
+                return endGame(`You did Won again, and you sill have ${pointsAccumulator} points`, true);
             }
             endGame(`You Won and get ${userPoints.innerText} points`, true);
         }
@@ -221,15 +219,6 @@ const loadState = function () {
 }
 loadtButton.addEventListener('click', () => {
     loadState();
-})
-shopButton.addEventListener('click', () => {
-    afterGameMenu.classList.add('hidden');
-    shop.classList.remove('hidden');
-    shop.children[0].innerText = `Amount of points: ${pointsAccumulator}`
-})
-shopBackButton.addEventListener('click', () => {
-    shop.classList.add('hidden');
-    afterGameMenu.classList.remove('hidden');
 })
 saveButton.addEventListener('click', () => {
     saveState();
