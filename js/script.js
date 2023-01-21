@@ -56,7 +56,7 @@ const changeElementPositionY = (el) => {
     el.style.top = `${el.offsetTop + 15}px`;
 }
 const checkElementPositionY = (el) => {
-    if (el.offsetTop < window.visualViewport.height - 67 - el.offsetHeight / 3) {
+    if (el.offsetTop < window.visualViewport.height - 67 - el.offsetHeight / 4) {
         return true;
     } else {
         return false;
