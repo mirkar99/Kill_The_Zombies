@@ -66,7 +66,7 @@ const scaleElement = (el, scale) => {
 const zombieAttack = function () {
     userHealth.innerText = Number(userHealth.innerText) - 5;
 }
-const zombieNewTop = el => el.style.top = `${window.visualViewport.height * 3 / 5}px`;
+const zombieNewTop = el => el.style.top = `${window.visualViewport.height * 2.5 / 5}px`;
 
 const createNewGame = () => {
     userPoints.innerText = '0';
