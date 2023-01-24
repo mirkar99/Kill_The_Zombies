@@ -24,22 +24,22 @@ let actualLevel = 1;
 
 const levels = {
     1: {
-        background: '../img/cemetery.png',
+        background: 'img/cemetery.png',
         zombiesToKill: 12,
         levelWasWon: false
     },
     2: {
-        background: '../img/cemetery.png',
+        background: 'img/cemetery.png',
         zombiesToKill: 16,
         levelWasWon: false
     },
     3: {
-        background: '../img/cemetery.png',
+        background: 'img/cemetery.png',
         zombiesToKill: 19,
         levelWasWon: false
     },
     4: {
-        background: '../img/cemetery.png',
+        background: 'img/cemetery.png',
         zombiesToKill: 24,
         levelWasWon: false
     }
