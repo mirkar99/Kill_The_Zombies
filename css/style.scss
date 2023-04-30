@@ -1,3 +1,4 @@
+@import url(normalize.css);
 $yellow-green-crayola: #d0db97ff;
 $medium-sea-green: #69b578ff;
 $fern-green: #3a7d44ff;
@@ -52,6 +53,7 @@ body {
         font-size: 1.2em;
         background-color: $raisin-black;
         color: $fern-green;
+        border: black;
     }
     &__button:hover {
         cursor: pointer;

@@ -1,3 +1,4 @@
+@import url(normalize.css);
 * {
   margin: 0;
   padding: 0;
@@ -48,6 +49,7 @@ body {
   font-size: 1.2em;
   background-color: #181d27;
   color: #3a7d44;
+  border: black;
 }
 .menu__button:hover {
   cursor: pointer;

@@ -24,22 +24,22 @@ let actualLevel = 1;
 
 const levels = {
     1: {
-        background: 'img/cemetery.png',
+        background: 'img/cemetery-with-pets.jpg',
         zombiesToKill: 12,
         levelWasWon: false
     },
     2: {
-        background: 'img/cemetery.png',
+        background: 'img/cemetery-with-pets.jpg',
         zombiesToKill: 16,
         levelWasWon: false
     },
     3: {
-        background: 'img/cemetery.png',
+        background: 'img/cemetery.jpg',
         zombiesToKill: 19,
         levelWasWon: false
     },
     4: {
-        background: 'img/cemetery.png',
+        background: 'img/cemetery.jpg',
         zombiesToKill: 24,
         levelWasWon: false
     }
@@ -69,11 +69,11 @@ const zombieAttack = function () {
 const zombieNewTop = el => el.style.top = `${window.visualViewport.height * 2.5 / 5}px`;
 
 const createNewGame = () => {
+    game.style.backgroundImage = `url(${levels[actualLevel].background})`;
     userPoints.innerText = '0';
     userAmmo.innerText = 14;
     userHealth.innerText = 100;
     menu.classList.add('hidden')
-    game.style.backgroundImage = `url(${levels[actualLevel].background})`;
     game.classList.remove('hidden')
     afterGameMenu.classList.add('hidden')
     gameInterval = setInterval(() => {
