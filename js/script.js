@@ -44,6 +44,34 @@ const levels = {
         levelWasWon: false
     }
 }
+const createLoading = () => {
+    const div = document.createElement('div');
+    div.innerText = 'Loading\n.';
+    div.classList.add('loading')
+    document.querySelector('.main').append(div);
+    let id = setInterval(() => {
+        console.log(div.innerText)
+        if (!document.querySelector('.loading')) {
+            clearInterval(id);
+        }
+        if (div.innerText === 'Loading\n...') {
+            div.innerText = 'Loading\n';
+        }
+        div.innerText += '.'
+
+
+    }, 500)
+}
+const loadingDisappear = () => {
+    return new Promise((resolve) => {
+        document.querySelector('.loading').innerText = 'Loading\n Complete'
+        document.querySelector('.loading').style.transform = `scale(${0})`;
+        setTimeout(() => {
+            document.querySelector('.loading').remove();
+            resolve()
+        }, 400)
+    })
+}
 const randomElementPositionX = (el) => {
     const viewportWidth = window.visualViewport.width;
     const maxRage = viewportWidth + 1 - el.offsetWidth;
@@ -68,36 +96,45 @@ const zombieAttack = function () {
 }
 const zombieNewTop = el => el.style.top = `${window.visualViewport.height * 2.5 / 5}px`;
 
+const checkIfImgIsLoaded = function (url) {
+    return new Promise((resolve, reject) => {
+        var src = url;
+        var image = new Image();
+        image.addEventListener('load', function () {
+            resolve();
+        });
+        image.src = src;
+    })
+}
+
 const createNewGame = () => {
     game.style.backgroundImage = `url(${levels[actualLevel].background})`;
     userPoints.innerText = '0';
     userAmmo.innerText = 14;
     userHealth.innerText = 100;
-    menu.classList.add('hidden')
-    game.classList.remove('hidden')
-    afterGameMenu.classList.add('hidden')
+    game.classList.remove('hidden');
     gameInterval = setInterval(() => {
         createNewZombie();
     }, 1000)
 }
 const createNextLevelButton = () => {
-    if(!document.querySelector('.menu__button--next')){
-    if (actualLevel < Object.keys(levels).length) {
-        if (levels[actualLevel].levelWasWon) {
-            const parent = document.querySelector('.menu--after-game');
-            const btn = document.createElement('button');
-            btn.innerText = 'Next Level';
-            btn.classList.add('menu__button');
-            btn.classList.add('menu__button--next');
-            btn.addEventListener('click', () => {
-                actualLevel++;
-                createNewGame();
-                btn.remove()
-            })
-            parent.append(btn)
+    if (!document.querySelector('.menu__button--next')) {
+        if (actualLevel < Object.keys(levels).length) {
+            if (levels[actualLevel].levelWasWon) {
+                const parent = document.querySelector('.menu--after-game');
+                const btn = document.createElement('button');
+                btn.innerText = 'Next Level';
+                btn.classList.add('menu__button');
+                btn.classList.add('menu__button--next');
+                btn.addEventListener('click', () => {
+                    actualLevel++;
+                    startGame();
+                    btn.remove()
+                })
+                parent.append(btn)
+            }
         }
     }
-}
 }
 const functionalityForNewZombie = (el) => {
     randomElementPositionX(el);
@@ -154,8 +191,23 @@ window.addEventListener("resize", () => {
     zombiesInterval.splice(0, zombiesInterval.length);
 });
 
+const startGame = async function () {
+    game.style.backgroundImage = `url(${''})`;
+    menu.classList.add('hidden');
+    afterGameMenu.classList.add('hidden');
+    createLoading();
+    try {
+        await checkIfImgIsLoaded('img/zombie.png');
+        await checkIfImgIsLoaded(`${levels[actualLevel].background}`);
+        await loadingDisappear();
+    }
+    finally {
+        createNewGame();
+    }
+}
+
 startButton.addEventListener('click', () => {
-    createNewGame();
+    startGame();
 })
 
 game.addEventListener('click', () => {
@@ -224,5 +276,5 @@ saveButton.addEventListener('click', () => {
     saveState();
 })
 restartButton.addEventListener('click', () => {
-    createNewGame();
+    startGame();
 })

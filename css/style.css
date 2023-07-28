@@ -24,11 +24,13 @@ body {
 }
 
 .main {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 90%;
   background-color: #3a7d44;
+  overflow: hidden;
 }
 
 .menu {
@@ -37,7 +39,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 5px;
-  transition: 0.2s ease-in-out;
+  transition: transform 0.4s ease-in-out;
 }
 .menu__text {
   color: #d0db97;
@@ -52,6 +54,7 @@ body {
   border: black;
 }
 .menu__button:hover {
+  color: #254d32;
   cursor: pointer;
 }
 
@@ -65,7 +68,7 @@ body {
   width: 100%;
   background-size: cover;
   background-position: center;
-  transition: 0.2s ease-in;
+  transition: transform 0.4s ease-in-out;
   overflow: hidden;
 }
 
@@ -98,6 +101,19 @@ body {
   transition: 0.1s top;
   background-size: cover;
   background-image: url(../img/zombie.png);
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+  width: 100%;
+  color: #d0db97;
+  background-color: #3a7d44;
+  font-size: 2em;
+  text-align: center;
+  transition: transform 0.4s ease-in-out;
 }
 
 .hidden {

@@ -7,10 +7,12 @@ $raisin-black: #181d27ff;
 
 $zombie-image-height: 1067px;
 $zombie-image-width: 800px;
+
 * {
     margin: 0;
     padding: 0;
 }
+
 html,
 body {
     position: relative;
@@ -25,28 +27,35 @@ body {
     align-items: center;
     height: 10%;
     background-color: $raisin-black;
+
     &__title {
         color: $british-racing-green;
     }
 }
+
 .main {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 90%;
     background-color: $fern-green;
+    overflow: hidden;
 }
+
 .menu {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 5px;
-    transition: 0.2s ease-in-out;
-    &__text{
+    transition: transform 0.4s ease-in-out;
+
+    &__text {
         color: $yellow-green-crayola;
         text-align: center;
     }
+
     &__button {
         height: 70px;
         width: 150px;
@@ -55,10 +64,13 @@ body {
         color: $fern-green;
         border: black;
     }
+
     &__button:hover {
+        color: $british-racing-green;
         cursor: pointer;
     }
 }
+
 .game {
     position: relative;
     cursor: crosshair;
@@ -69,13 +81,15 @@ body {
     width: 100%;
     background-size: cover;
     background-position: center;
-    transition: 0.2s ease-in;
+    transition: transform 0.4s ease-in-out;
     overflow: hidden;
 }
+
 .user-stats {
     display: flex;
     align-items: center;
     gap: 20px;
+
     &__element {
         display: flex;
         flex-direction: column;
@@ -88,6 +102,7 @@ body {
         color: $yellow-green-crayola;
         background-color: $raisin-black;
         z-index: 100;
+
         &--ammo:hover {
             cursor: pointer;
         }
@@ -102,6 +117,20 @@ body {
     background-size: cover;
     background-image: url(../img/zombie.png);
 }
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    width: 100%;
+    color: $yellow-green-crayola;
+    background-color: $fern-green;
+    font-size: 2em;
+    text-align: center;
+    transition: transform 0.4s ease-in-out;
+}
+
 .hidden {
     position: absolute;
     overflow: hidden;
